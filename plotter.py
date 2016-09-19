@@ -12,6 +12,7 @@ def is_number(s):
         return False
 
 flag = 0
+desc_string = " "
 for i in os.listdir("."):
     if i.endswith(".log") :
         f = open(""+i, 'r')
@@ -25,6 +26,8 @@ for i in os.listdir("."):
         topology2_latency = []
         topology3_latency = []
         topology4_latency = []
+        reduced_topology = []
+        num_workers = []
         input_at_source_1 = []
         output_at_sink_1 = []
         input_at_source_2 = []
@@ -39,6 +42,7 @@ for i in os.listdir("."):
         victim_operator = []
         victim = []
         rebalance_time = []
+        rebalance_desc = []
         latency_index = 3
         name_index = 0
         juice_index = 2
@@ -75,15 +79,18 @@ for i in os.listdir("."):
                         rebalance_time.append(float(one_line[0]))
                 elif "/var/nimbus/storm" in one_line[0] :
                     time_for_rebalance = line.split(" ")
-                    if "Running" not in line:
+                    if "-n" not in line:
                         if flag == 0:
-                            target.append(time_for_rebalance[2])
-                            target_operator.append(time_for_rebalance[4])
+                            desc_string = " ".join((time_for_rebalance[2] , time_for_rebalance[6]))
                             flag = 1
                         else:
-                            victim.append(time_for_rebalance[2])
-                            victim_operator.append(time_for_rebalance[4])
+                            temp = " ".join((time_for_rebalance[2], time_for_rebalance[6]))
+                            desc_string = " ".join((desc_string,temp))
+                            rebalance_desc.append(desc_string)
+                            desc_string = " "
                             flag = 0
+                    else:
+                        rebalance_desc.append(time_for_rebalance[2] + " "+ time_for_rebalance[4]) # should give topology name space num workers
                 elif len(one_line) == 1 and is_number(one_line[0]):
                     rebalance_time.append(float(one_line[0]))
 
@@ -151,18 +158,15 @@ for i in os.listdir("."):
 
         plt.vlines(x=600, ymax=5 , ymin=-1, label="Ten Minute Mark", colors='blue')
 
-        #linestyles = [ '--' , '--' , 'solid', 'dotted']
-        linestyles = [ '--' , '--', '--', '--']
+        linestyles = [ '--' , '-.' , 'solid', 'dotted']
         for j in range(0, len(rebalance_time)):
-            la = target[j] + " " + target_operator[j] + " " + victim[j] + " " + victim_operator[j]
-            ax.vlines(x=rebalance_time[j], ymax=5 , ymin=-1,  colors='black', linestyle=linestyles[j%4]) #label=la,label="rebalance "+str(j+1),label="rebalance "+str(j+1),
-        #ax.legend(loc=9, bbox_to_anchor=(0.5, -0.1), ncol=5,prop={'size':10})
-        #ax2.legend(loc=10, bbox_to_anchor=(0.5, -0.1), ncol=5,prop={'size':10})
+            la = rebalance_desc[j]
+            ax.vlines(x=rebalance_time[j], ymax=5 , ymin=-1,  colors='black', linestyle=linestyles[j%4], label=la,)
 
 
         lines, labels = ax.get_legend_handles_labels()
         lines2, labels2 = ax2.get_legend_handles_labels()
-        ax2.legend(lines + lines2, labels + labels2, loc=9, bbox_to_anchor=(0.5, -0.1), ncol=5,prop={'size':10})
+        ax2.legend(lines + lines2, labels + labels2, loc=9, bbox_to_anchor=(0.5, -0.1), ncol=2,prop={'size':10})
 
         plt.xlim(-10,1900)
         ax.set_ylim(-0.01,1.1)
@@ -201,8 +205,8 @@ for i in os.listdir("."):
 
 
         for j in range(0, len(rebalance_time)):
-            la = target[j] + " " + target_operator[j] + " " + victim[j] + " " + victim_operator[j]
-            ax.vlines(x=rebalance_time[j], ymax=5000 , ymin=-1,  colors='black', linestyle=linestyles[j%4]) #label=la,label="rebalance " + str(j+1),
+            la = rebalance_desc[j]#target[j] + " " + target_operator[j] + " " + victim[j] + " " + victim_operator[j]
+            ax.vlines(x=rebalance_time[j], ymax=5000 , ymin=-1,  colors='black', linestyle=linestyles[j%4], label=la,) #label=la,label="rebalance " + str(j+1),
 
         ax.set_xlabel('Time/S', fontsize=10)
         ax.set_ylabel('Number of Tuples', fontsize=10)
@@ -212,7 +216,7 @@ for i in os.listdir("."):
         ax.grid(True)
         fig.tight_layout()
         plt.vlines(x=600, ymax=5000 , ymin=-1, label="Ten Minute Mark", colors='blue')
-        plt.legend(loc=9, bbox_to_anchor=(0.5, -0.1), ncol=5,prop={'size':10})
+        plt.legend(loc=9, bbox_to_anchor=(0.5, -0.1), ncol=2,prop={'size':10})
         plt.xlim(-10,1900)
         plt.ylim(-1,5000)
         plt.savefig(filename+"+tuples"+'.png', bbox_inches='tight')
