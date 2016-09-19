@@ -172,25 +172,6 @@ for i in os.listdir("."):
         ax.set_ylim(-0.01,1.1)
         ax2.set_ylim(10,100)
 
-
-      #  axins = zoomed_inset_axes(ax,  2.5, loc=1)
-      #  axins.scatter(time, topology1_juice, edgecolors ="blue", label="T1", marker ="D", facecolors='none', s=40, )
-      #  axins.scatter(time, topology2_juice, edgecolors ="green", label="T2", marker =">", facecolors='none', s=40, )
-      #  axins.scatter(time, topology3_juice, edgecolors ="red", label="T3", marker="h", facecolors='none', s=40, )
-      #  axins.scatter(time, topology4_juice, edgecolors ="darkorange", label="T4", marker="s", facecolors='none', s=40, )
-      #  axins.vlines(x=600, ymax=5 , ymin=-1, label="Ten Minute Mark", colors='blue')
-
-      #  for j in range(0, len(rebalance_time)):
-      #      la = target[j] + " " + target_operator[j] + " " + victim[j] + " " + victim_operator[j]
-      #      axins.vlines(x=rebalance_time[j], ymax=5 , ymin=-1,  colors='black', linestyle=linestyles[j%4]) #label=la,label="rebalance " + str(j+1),
-
-
-      #  x1, x2, y1, y2 = 590, 1300, 0.8, 1.2 # specify the limits
-      #  axins.set_xlim(x1, x2) # apply the x-limits
-      #  axins.set_ylim(y1, y2) # apply the y-limits
-      #  mark_inset(ax, axins, loc1=3, loc2=4, fc="none", ec="0.5")
-
-
         plt.savefig(filename+'.png', bbox_inches='tight')
 
         fig, ax = plt.subplots()
