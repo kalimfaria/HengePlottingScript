@@ -1,7 +1,6 @@
 import os
 
 import matplotlib.pyplot as plt
-import numpy
 from mpl_toolkits.axes_grid1.inset_locator import zoomed_inset_axes
 from mpl_toolkits.axes_grid1.inset_locator import mark_inset
 
@@ -12,38 +11,30 @@ def is_number(s):
     except ValueError:
         return False
 
-def movingaverage(interval, window_size):
-    window = numpy.ones(int(window_size))/float(window_size)
-    return numpy.convolve(interval, window, 'same')
-
-def reject_outliers(data, m):
-    u = numpy.mean(data)
-    s = numpy.std(data)
-    filtered = []
-    for e in data:
-        if (u - m * s < e < u + m * s):
-            filtered.append(e)
-        else:
-            print "Does not apply"
-            filtered.append(u)
-    return filtered
-
 flag = 0
 desc_string = " "
-for i in os.listdir("/Users/fariakalim/exps7/"):
-    if i.endswith("output-without-22.log") :
+for i in os.listdir("/Users/fariakalim/exp13/"):
+    if i.endswith("output.log") :
         print i
-        f = open("/Users/fariakalim/exps7/"+i, 'r')
+        f = open("/Users/fariakalim/exp13/"+i, 'r')
         filename = f.__getattribute__("name").split(".")[0]
+
         print filename
         topology1_juice = []
         topology2_juice = []
         topology3_juice = []
         topology4_juice = []
+        topology5_juice = []
+        topology6_juice = []
+        topology7_juice = []
         topology1_latency = []
         topology2_latency = []
         topology3_latency = []
         topology4_latency = []
+        topology5_latency = []
+        topology6_latency = []
+        topology7_latency = []
+
         reduced_topology = []
         num_workers = []
         input_at_source_1 = []
@@ -54,6 +45,13 @@ for i in os.listdir("/Users/fariakalim/exps7/"):
         output_at_sink_3 = []
         input_at_source_4 = []
         output_at_sink_4 = []
+        input_at_source_5 = []
+        output_at_sink_5 = []
+        input_at_source_6 = []
+        output_at_sink_6 = []
+        input_at_source_7 = []
+        output_at_sink_7 = []
+        
         time = []
         target = []
         target_operator = []
@@ -175,7 +173,7 @@ for i in os.listdir("/Users/fariakalim/exps7/"):
         topology3_latency = topology3_latency [0:min_length]
         topology4_latency = topology4_latency [0:min_length]
 
-     #   print topology4_latency
+        print topology4_latency
 
         input_at_source_1 = input_at_source_1[0:min_length]
         output_at_sink_1 = output_at_sink_1[0:min_length]
@@ -187,10 +185,10 @@ for i in os.listdir("/Users/fariakalim/exps7/"):
         output_at_sink_4 = output_at_sink_4[0:min_length]
 
         fig, ax = plt.subplots()
-    #    ax.scatter(time, topology1_juice, edgecolors ="blue", label="T1 Latency SLO=30", marker ="D", facecolors='none', s=40,)
-    #    ax.scatter(time, topology2_juice, edgecolors ="green", label="T2 Latency SLO=30", marker =">", facecolors='none', s=40,)
-    #    ax.scatter(time, topology3_juice, edgecolors ="red", label="T3 SLO=30", marker="h", facecolors='none', s=40, )
-    #    ax.scatter(time, topology4_juice, edgecolors ="darkorange", label="T4 SLO=30", marker="s", facecolors='none', s=40,)
+   #     ax.scatter(time, topology1_juice, edgecolors ="blue", label="T1 Latency SLO=30", marker ="D", facecolors='none', s=40,)
+   #     ax.scatter(time, topology2_juice, edgecolors ="green", label="T2 Latency SLO=30", marker =">", facecolors='none', s=40,)
+   #     ax.scatter(time, topology3_juice, edgecolors ="red", label="T3 SLO=0.9", marker="h", facecolors='none', s=40, )
+   #     ax.scatter(time, topology4_juice, edgecolors ="darkorange", label="T4 SLO=0.9", marker="s", facecolors='none', s=40,)
 
         ax2 = ax.twinx()
         ax2.scatter(time, topology1_latency, edgecolors ="black", label="T1 Latency", marker ="*", facecolors='none', s=40,)
@@ -207,7 +205,7 @@ for i in os.listdir("/Users/fariakalim/exps7/"):
         plt.vlines(x=600, ymax=1000 , ymin=0, label="Ten Minute Mark", colors='blue')
 
         linestyles = [ '--' , '-.' , 'solid', 'dotted']
-        for j in range(0, len(rebalance_time)):
+        for j in range(0, 36):#len(rebalance_time)):
             la = rebalance_desc[j]
             ax.vlines(x=rebalance_time[j], ymax=5 , ymin=-1,  colors='black', linestyle=linestyles[j%4], label=la,)
 
@@ -215,27 +213,22 @@ for i in os.listdir("/Users/fariakalim/exps7/"):
         lines2, labels2 = ax2.get_legend_handles_labels()
         ax2.legend(lines + lines2, labels + labels2 , loc=9, bbox_to_anchor=(0.5, -0.1), ncol=2,prop={'size':10}) #+ lines2 #+ labels2
 
-        #plt.xlim(0,20000)
-        ax.set_ylim(0.5, 1.5)
-        ax2.set_ylim(0,200)
+      #  plt.xlim(0,5000)
+        ax.set_ylim(0.95, 1.05)
+        ax2.set_ylim(50,150)
 
         plt.savefig(filename+'.png', bbox_inches='tight')
 
         fig, ax = plt.subplots()
-
-        x_av1 = movingaverage(output_at_sink_1, 10)
-        x_av2 = movingaverage(output_at_sink_2,  10)
-        x_av3 = movingaverage(output_at_sink_3, 10)
-        x_av4 = movingaverage(output_at_sink_4, 10)
-
         ax.scatter(time, input_at_source_1, edgecolors = "chocolate", label= "T1 input", facecolor='none', marker = "D", s=40)
-        ax.scatter(time, x_av1, edgecolors = "black", label= "T1 output" ,facecolor='none', marker = "+", s=40)
+        ax.scatter(time, output_at_sink_1, edgecolors = "black", label= "T1 output" ,facecolor='none', marker = "+", s=40)
         ax.scatter(time, input_at_source_2, edgecolors = "red", label= "T2 input",facecolor='none', marker = ">", s=40)
-        ax.scatter(time, x_av2, edgecolors = "blue", label= "T2 output" ,facecolor='none', marker = "<",s=40)
+        ax.scatter(time, output_at_sink_2, edgecolors = "blue", label= "T2 output" ,facecolor='none', marker = "<",s=40)
         ax.scatter(time, input_at_source_3, edgecolors = "teal", label= "T3 input", facecolor='none', marker = "x",s=40)
-        ax.scatter(time, x_av3, edgecolors = "green", label= "T3 output", facecolor='none', marker = "h", s=40)
+        ax.scatter(time, output_at_sink_3, edgecolors = "green", label= "T3 output", facecolor='none', marker = "h", s=40)
         ax.scatter(time, input_at_source_4, edgecolors = "purple", label= "T4 input", facecolor='none',marker = "v" , s=40)
-        ax.scatter(time, x_av4, edgecolors = "magenta", label= "T4 output" , facecolor='none', marker = "s", s=40)
+        ax.scatter(time, output_at_sink_4, edgecolors = "magenta", label= "T4 output" , facecolor='none', marker = "s", s=40)
+
 
         for j in range(0, len(rebalance_time)):
             la = rebalance_desc[j]#target[j] + " " + target_operator[j] + " " + victim[j] + " " + victim_operator[j]
@@ -244,10 +237,12 @@ for i in os.listdir("/Users/fariakalim/exps7/"):
         ax.set_xlabel('Time/S', fontsize=10)
         ax.set_ylabel('Number of Tuples', fontsize=10)
 
+
+
         ax.grid(True)
         fig.tight_layout()
         plt.vlines(x=600, ymax=5000 , ymin=-1, label="Ten Minute Mark", colors='blue')
         plt.legend(loc=9, bbox_to_anchor=(0.5, -0.1), ncol=2,prop={'size':10})
-        plt.xlim(0,60000)
-        plt.ylim(1000,1500)
+        plt.xlim(-10,3000)
+        plt.ylim(-1,5000)
         plt.savefig(filename+"+tuples"+'.png', bbox_inches='tight')
