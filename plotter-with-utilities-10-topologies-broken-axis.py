@@ -30,10 +30,10 @@ def reject_outliers(data, m):
 
 flag = 0
 desc_string = " "
-for i in os.listdir("/Users/fariakalim/exp31/"):
+for i in os.listdir("/Users/fariakalim/exp32/"):
     if i.endswith("output.log") :
         print i
-        f = open("/Users/fariakalim/exp31/"+i, 'r')
+        f = open("/Users/fariakalim/exp32/"+i, 'r')
         filename = f.__getattribute__("name").split(".")[0]
         print filename
         topology1_juice = []
@@ -477,8 +477,8 @@ for i in os.listdir("/Users/fariakalim/exp31/"):
 
 
 
-        xlim_start = 000#0#17200
-        xlim_end = 40000#55000#17400#102000
+        xlim_start = 500#0#17200
+        xlim_end = 62000#55000#17400#102000
 
         sum =[]
         temp_time = []
@@ -508,8 +508,8 @@ for i in os.listdir("/Users/fariakalim/exp31/"):
         lines2, labels2 = ax2.get_legend_handles_labels()
         ax2.legend(lines + lines2, labels + labels2 , loc=9, bbox_to_anchor=(0.5, -0.2), ncol=5,prop={'size':10}) #+ lines2 #+ labels2
 
-        plt.xlim(500,32000)#55000)
-        #plt.xlim(500,40000)#55000)
+        plt.xlim(xlim_start,xlim_end)#55000)
+        #plt.xlim(500,32000)#55000)
         #ax.set_ylim(0, 1.2)
         #ax2.set_ylim(40,100)
 
@@ -576,41 +576,43 @@ for i in os.listdir("/Users/fariakalim/exp31/"):
         plt.xlim(xlim_start,xlim_end)
         ax.set_ylim(0,240)
         plt.savefig(filename+'-utilities.png', bbox_inches='tight')
-# plotting input and output tuples
-        fig, ax = plt.subplots()
-
-        #x_av1 = movingaverage(output_at_sink_1, 10)
-        #x_av2 = movingaverage(output_at_sink_2,  10)
-        #x_av3 = movingaverage(output_at_sink_3, 10)
-        #x_av4 = movingaverage(output_at_sink_4, 10)
-
-        ax.scatter(time, input_at_source_1, edgecolors = "green", label= "T1 input", facecolor='none', marker = "D", s=40)
-        ax.scatter(time, output_at_sink_1, edgecolors = "blue", label= "T1 output" ,facecolor='none', marker = "+", s=40)
-       # ax.scatter(time, input_at_source_2, edgecolors = "red", label= "T2 input",facecolor='none', marker = ">", s=40)
-       # ax.scatter(time, output_at_sink_2, edgecolors = "blue", label= "T2 output" ,facecolor='none', marker = "<",s=40)
-       # ax.scatter(time, input_at_source_3, edgecolors = "teal", label= "T3 input", facecolor='none', marker = "x",s=40)
-       # ax.scatter(time, output_at_sink_3, edgecolors = "green", label= "T3 output", facecolor='none', marker = "h", s=40)
-       # ax.scatter(time, input_at_source_4, edgecolors = "b", label= "T4 input", facecolor='none', marker = "x",s=40)
-       # ax.scatter(time, output_at_sink_4, edgecolors = "y", label= "T4 output", facecolor='none', marker = "h", s=40)
-       # ax.scatter(time, input_at_source_5, edgecolors = "m", label= "T5 input", facecolor='none', marker = "x",s=40)
-       # ax.scatter(time, output_at_sink_5, edgecolors = "orange", label= "T5 output", facecolor='none', marker = "h", s=40)
-       # ax.scatter(time, input_at_source_6, edgecolors = "g", label= "T6 input", facecolor='none', marker = "x",s=40)
-       # ax.scatter(time, output_at_sink_6, edgecolors = "r", label= "T6 output", facecolor='none', marker = "h", s=40)
-       # ax.scatter(time, input_at_source_7, edgecolors = "purple", label= "T7 input", facecolor='none',marker = "v" , s=40)
-       # ax.scatter(time, output_at_sink_7, edgecolors = "magenta", label= "T7 output" , facecolor='none', marker = "s", s=40)
-
-        for j in range(0, len(rebalance_time)):
-            if ("T1" in rebalance_desc[j]):
-                la = rebalance_desc[j]#target[j] + " " + target_operator[j] + " " + victim[j] + " " + victim_operator[j]
-                ax.vlines(x=rebalance_time[j], ymax=5000 , ymin=-1,  colors='black', linestyle=linestyles[j%4], label=la,) #label=la,label="rebalance " + str(j+1),
-
-        ax.set_xlabel('Time/S', fontsize=10)
-        ax.set_ylabel('Number of Tuples', fontsize=10)
-
-        ax.grid(True)
-        fig.tight_layout()
-        plt.vlines(x=600, ymax=5000 , ymin=-1, label="Ten Minute Mark", colors='blue')
-        plt.legend(loc=9, bbox_to_anchor=(0.5, -0.1), ncol=2,prop={'size':10})
-        plt.xlim(0,40000)
-        plt.ylim(0,5000)
-        plt.savefig(filename+"+tuples"+'.png', bbox_inches='tight')
+        # # plotting input and output tuples
+        # fig, ax = plt.subplots()
+        #
+        # # x_av1 = movingaverage(output_at_sink_1, 10)
+        # # x_av2 = movingaverage(output_at_sink_2,  10)
+        # # x_av3 = movingaverage(output_at_sink_3, 10)
+        # # x_av4 = movingaverage(output_at_sink_4, 10)
+        #
+        # ax.scatter(time, input_at_source_1, edgecolors="green", label="T1 input", facecolor='none', marker="D", s=40)
+        # ax.scatter(time, output_at_sink_1, edgecolors="blue", label="T1 output", facecolor='none', marker="+", s=40)
+        # # ax.scatter(time, input_at_source_2, edgecolors = "red", label= "T2 input",facecolor='none', marker = ">", s=40)
+        # # ax.scatter(time, output_at_sink_2, edgecolors = "blue", label= "T2 output" ,facecolor='none', marker = "<",s=40)
+        # # ax.scatter(time, input_at_source_3, edgecolors = "teal", label= "T3 input", facecolor='none', marker = "x",s=40)
+        # # ax.scatter(time, output_at_sink_3, edgecolors = "green", label= "T3 output", facecolor='none', marker = "h", s=40)
+        # # ax.scatter(time, input_at_source_4, edgecolors = "b", label= "T4 input", facecolor='none', marker = "x",s=40)
+        # # ax.scatter(time, output_at_sink_4, edgecolors = "y", label= "T4 output", facecolor='none', marker = "h", s=40)
+        # # ax.scatter(time, input_at_source_5, edgecolors = "m", label= "T5 input", facecolor='none', marker = "x",s=40)
+        # # ax.scatter(time, output_at_sink_5, edgecolors = "orange", label= "T5 output", facecolor='none', marker = "h", s=40)
+        # # ax.scatter(time, input_at_source_6, edgecolors = "g", label= "T6 input", facecolor='none', marker = "x",s=40)
+        # # ax.scatter(time, output_at_sink_6, edgecolors = "r", label= "T6 output", facecolor='none', marker = "h", s=40)
+        # # ax.scatter(time, input_at_source_7, edgecolors = "purple", label= "T7 input", facecolor='none',marker = "v" , s=40)
+        # # ax.scatter(time, output_at_sink_7, edgecolors = "magenta", label= "T7 output" , facecolor='none', marker = "s", s=40)
+        #
+        # for j in range(0, len(rebalance_time)):
+        #     if ("T1" in rebalance_desc[j]):
+        #         la = rebalance_desc[
+        #             j]  # target[j] + " " + target_operator[j] + " " + victim[j] + " " + victim_operator[j]
+        #         ax.vlines(x=rebalance_time[j], ymax=5000, ymin=-1, colors='black', linestyle=linestyles[j % 4],
+        #                   label=la, )  # label=la,label="rebalance " + str(j+1),
+        #
+        # ax.set_xlabel('Time/S', fontsize=10)
+        # ax.set_ylabel('Number of Tuples', fontsize=10)
+        #
+        # ax.grid(True)
+        # fig.tight_layout()
+        # plt.vlines(x=600, ymax=5000, ymin=-1, label="Ten Minute Mark", colors='blue')
+        # plt.legend(loc=9, bbox_to_anchor=(0.5, -0.1), ncol=2, prop={'size': 10})
+        # plt.xlim(0, 40000)
+        # plt.ylim(0, 5000)
+        # plt.savefig(filename + "+tuples" + '.png', bbox_inches='tight')

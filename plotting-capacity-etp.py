@@ -193,21 +193,21 @@ for i in os.listdir("/Users/fariakalim/exp24/"):
             min_length = len(topology4_bolt_filter_2)
 
         time = time[0:min_length]
-        # topology1_bolt_aggregate = topology1_bolt_aggregate[0:min_length]
-        # topology1_spout = topology1_spout[0:min_length]
-        # topology1_bolt_transform = topology1_bolt_transform[0:min_length]
-        # topology1_bolt_output_sink = topology1_bolt_output_sink[0:min_length]
-        # topology1_bolt_join = topology1_bolt_join[0:min_length]
-        # topology1_bolt_filter = topology1_bolt_filter[0:min_length]
-        # topology1_bolt_filter_2 = topology1_bolt_filter_2[0:min_length]
+        topology1_bolt_aggregate = topology1_bolt_aggregate[0:min_length]
+        topology1_spout = topology1_spout[0:min_length]
+        topology1_bolt_transform = topology1_bolt_transform[0:min_length]
+        topology1_bolt_output_sink = topology1_bolt_output_sink[0:min_length]
+        topology1_bolt_join = topology1_bolt_join[0:min_length]
+        topology1_bolt_filter = topology1_bolt_filter[0:min_length]
+        topology1_bolt_filter_2 = topology1_bolt_filter_2[0:min_length]
 
-        topology2_bolt_aggregate = topology2_bolt_aggregate[0:min_length]
-        topology2_spout = topology2_spout[0:min_length]
-        topology2_bolt_transform = topology2_bolt_transform[0:min_length]
-        topology2_bolt_output_sink = topology2_bolt_output_sink[0:min_length]
-        topology2_bolt_join = topology2_bolt_join[0:min_length]
-        topology2_bolt_filter = topology2_bolt_filter[0:min_length]
-        topology2_bolt_filter_2 = topology2_bolt_filter_2[0:min_length]
+  #      topology2_bolt_aggregate = topology2_bolt_aggregate[0:min_length]
+  #      topology2_spout = topology2_spout[0:min_length]
+  #      topology2_bolt_transform = topology2_bolt_transform[0:min_length]
+  #      topology2_bolt_output_sink = topology2_bolt_output_sink[0:min_length]
+  #      topology2_bolt_join = topology2_bolt_join[0:min_length]
+  #      topology2_bolt_filter = topology2_bolt_filter[0:min_length]
+  #      topology2_bolt_filter_2 = topology2_bolt_filter_2[0:min_length]
        #
        #  topology3_bolt_aggregate = topology3_bolt_aggregate[0:min_length]
        # # topology3_spout = topology3_spout[0:min_length]
@@ -230,9 +230,9 @@ for i in os.listdir("/Users/fariakalim/exp24/"):
             time[i] = (time[i] - val)/1000
         # D > s
         fig, ax = plt.subplots()
-        print topology2_bolt_aggregate
+        print topology1_bolt_aggregate
         print time
-        ax.scatter(time, topology2_bolt_aggregate, edgecolors ="blue", label="T2 Latency SLO=50 bolt_aggregate", marker ="s", facecolors='none', s=10,)
+        ax.scatter(time, topology1_bolt_aggregate, edgecolors ="blue", label="Capacity of congested bolt", marker ="s", facecolors='none', s=10,)
 
         ax.set_xlabel('Time/S', fontsize=10)
         ax.set_ylabel('Capacity', fontsize=10)
@@ -243,13 +243,13 @@ for i in os.listdir("/Users/fariakalim/exp24/"):
         lines, labels = ax.get_legend_handles_labels()
         ax.legend(lines, labels, loc=9, bbox_to_anchor=(0.5, -0.1), ncol=2,prop={'size':10})
 
-        plt.xlim(0,11000)
-        ax.set_ylim(-1.0, 2.0)
+        plt.xlim(0,23000)
+        ax.set_ylim(0, 1.5)
 
-        plt.savefig(filename+'-aggregate-topology2-capacity.png', bbox_inches='tight')
+        plt.savefig(filename+'-aggregate-topology1-capacity.png', bbox_inches='tight')
 
         fig, ax = plt.subplots()
-        ax.scatter(time, topology2_spout, edgecolors ="green", label="T2 spout", marker ="s", facecolors='none', s=10,)
+        ax.scatter(time, topology1_bolt_filter_2, edgecolors ="black", label="Capacity of congested bolt", marker="s", facecolors='none', s=10,)
 
         ax.set_xlabel('Time/S', fontsize=10)
         ax.set_ylabel('Capacity', fontsize=10)
@@ -261,94 +261,112 @@ for i in os.listdir("/Users/fariakalim/exp24/"):
         ax.legend(lines, labels, loc=9, bbox_to_anchor=(0.5, -0.1), ncol=2,prop={'size':10})
 
         plt.xlim(0,11000)
-        ax.set_ylim(-1.0, 2.0)
+        ax.set_ylim(-1.0, 3.0)
 
-        plt.savefig(filename+'-spout-topology2-capacity.png', bbox_inches='tight')
+        plt.savefig(filename+'-filter2-topology1-capacity.png', bbox_inches='tight')
 
-        fig, ax = plt.subplots()
-        ax.scatter(time, topology2_bolt_transform, edgecolors ="darkorange", label="T2 bolt_transform", marker="s", facecolors='none', s=10,)
 
-        ax.set_xlabel('Time/S', fontsize=10)
-        ax.set_ylabel('Capacity', fontsize=10)
-
-        ax.grid(True)
-        fig.tight_layout()
-
-        lines, labels = ax.get_legend_handles_labels()
-        ax.legend(lines, labels, loc=9, bbox_to_anchor=(0.5, -0.1), ncol=2,prop={'size':10})
-
-        plt.xlim(0,11000)
-        ax.set_ylim(-1.0, 2.0)
-
-        plt.savefig(filename+'-transform-topology2-capacity.png', bbox_inches='tight')
-
-        fig, ax = plt.subplots()
-        ax.scatter(time, topology2_bolt_output_sink, edgecolors ="darkorange", label="T2 bolt_output_sink", marker="s", facecolors='none', s=10,)
-
-        ax.set_xlabel('Time/S', fontsize=10)
-        ax.set_ylabel('Capacity', fontsize=10)
-
-        ax.grid(True)
-        fig.tight_layout()
-
-        lines, labels = ax.get_legend_handles_labels()
-        ax.legend(lines, labels, loc=9, bbox_to_anchor=(0.5, -0.1), ncol=2,prop={'size':10})
-
-        plt.xlim(0,11000)
-        ax.set_ylim(-1.0, 2.0)
-
-        plt.savefig(filename+'-output-topology2-capacity.png', bbox_inches='tight')
-
-        fig, ax = plt.subplots()
-        ax.scatter(time, topology2_bolt_join, edgecolors ="pink", label="T2 bolt_join", marker="s", facecolors='none', s=10,)
-
-        ax.set_xlabel('Time/S', fontsize=10)
-        ax.set_ylabel('Capacity', fontsize=10)
-
-        ax.grid(True)
-        fig.tight_layout()
-
-        lines, labels = ax.get_legend_handles_labels()
-        ax.legend(lines, labels, loc=9, bbox_to_anchor=(0.5, -0.1), ncol=2,prop={'size':10})
-
-        plt.xlim(0,11000)
-        ax.set_ylim(-1.0, 2.0)
-
-        plt.savefig(filename+'-join-topology2-capacity.png', bbox_inches='tight')
-
-        fig, ax = plt.subplots()
-        ax.scatter(time, topology2_bolt_filter, edgecolors ="yellow", label="T2 bolt_filter", marker="s", facecolors='none', s=10,)
-
-        ax.set_xlabel('Time/S', fontsize=10)
-        ax.set_ylabel('Capacity', fontsize=10)
-
-        ax.grid(True)
-        fig.tight_layout()
-
-        lines, labels = ax.get_legend_handles_labels()
-        ax.legend(lines, labels, loc=9, bbox_to_anchor=(0.5, -0.1), ncol=2,prop={'size':10})
-
-        plt.xlim(0,11000)
-        ax.set_ylim(-1.0, 2.0)
-
-        plt.savefig(filename+'-filter-topology2-capacity.png', bbox_inches='tight')
-
-        fig, ax = plt.subplots()
-        ax.scatter(time, topology2_bolt_filter_2, edgecolors ="black", label="T2 bolt_filter_2", marker="s", facecolors='none', s=10,)
-
-        ax.set_xlabel('Time/S', fontsize=10)
-        ax.set_ylabel('Capacity', fontsize=10)
-
-        ax.grid(True)
-        fig.tight_layout()
-
-        lines, labels = ax.get_legend_handles_labels()
-        ax.legend(lines, labels, loc=9, bbox_to_anchor=(0.5, -0.1), ncol=2,prop={'size':10})
-
-        plt.xlim(0,11000)
-      #  ax.set_ylim(-1.0, 3.0)
-
-        plt.savefig(filename+'-filter2-topology2-capacity.png', bbox_inches='tight')
+      #   fig, ax = plt.subplots()
+      #   ax.scatter(time, topology2_spout, edgecolors ="green", label="T2 spout", marker ="s", facecolors='none', s=10,)
+      #
+      #   ax.set_xlabel('Time/S', fontsize=10)
+      #   ax.set_ylabel('Capacity', fontsize=10)
+      #
+      #   ax.grid(True)
+      #   fig.tight_layout()
+      #
+      #   lines, labels = ax.get_legend_handles_labels()
+      #   ax.legend(lines, labels, loc=9, bbox_to_anchor=(0.5, -0.1), ncol=2,prop={'size':10})
+      #
+      #   plt.xlim(0,11000)
+      #   ax.set_ylim(-1.0, 2.0)
+      #
+      #   plt.savefig(filename+'-spout-topology2-capacity.png', bbox_inches='tight')
+      #
+      #   fig, ax = plt.subplots()
+      #   ax.scatter(time, topology2_bolt_transform, edgecolors ="darkorange", label="T2 bolt_transform", marker="s", facecolors='none', s=10,)
+      #
+      #   ax.set_xlabel('Time/S', fontsize=10)
+      #   ax.set_ylabel('Capacity', fontsize=10)
+      #
+      #   ax.grid(True)
+      #   fig.tight_layout()
+      #
+      #   lines, labels = ax.get_legend_handles_labels()
+      #   ax.legend(lines, labels, loc=9, bbox_to_anchor=(0.5, -0.1), ncol=2,prop={'size':10})
+      #
+      #   plt.xlim(0,11000)
+      #   ax.set_ylim(-1.0, 2.0)
+      #
+      #   plt.savefig(filename+'-transform-topology2-capacity.png', bbox_inches='tight')
+      #
+      #   fig, ax = plt.subplots()
+      #   ax.scatter(time, topology2_bolt_output_sink, edgecolors ="darkorange", label="T2 bolt_output_sink", marker="s", facecolors='none', s=10,)
+      #
+      #   ax.set_xlabel('Time/S', fontsize=10)
+      #   ax.set_ylabel('Capacity', fontsize=10)
+      #
+      #   ax.grid(True)
+      #   fig.tight_layout()
+      #
+      #   lines, labels = ax.get_legend_handles_labels()
+      #   ax.legend(lines, labels, loc=9, bbox_to_anchor=(0.5, -0.1), ncol=2,prop={'size':10})
+      #
+      #   plt.xlim(0,11000)
+      #   ax.set_ylim(-1.0, 2.0)
+      #
+      #   plt.savefig(filename+'-output-topology2-capacity.png', bbox_inches='tight')
+      #
+      #   fig, ax = plt.subplots()
+      #   ax.scatter(time, topology2_bolt_join, edgecolors ="pink", label="T2 bolt_join", marker="s", facecolors='none', s=10,)
+      #
+      #   ax.set_xlabel('Time/S', fontsize=10)
+      #   ax.set_ylabel('Capacity', fontsize=10)
+      #
+      #   ax.grid(True)
+      #   fig.tight_layout()
+      #
+      #   lines, labels = ax.get_legend_handles_labels()
+      #   ax.legend(lines, labels, loc=9, bbox_to_anchor=(0.5, -0.1), ncol=2,prop={'size':10})
+      #
+      #   plt.xlim(0,11000)
+      #   ax.set_ylim(-1.0, 2.0)
+      #
+      #   plt.savefig(filename+'-join-topology2-capacity.png', bbox_inches='tight')
+      #
+      #   fig, ax = plt.subplots()
+      #   ax.scatter(time, topology2_bolt_filter, edgecolors ="yellow", label="T2 bolt_filter", marker="s", facecolors='none', s=10,)
+      #
+      #   ax.set_xlabel('Time/S', fontsize=10)
+      #   ax.set_ylabel('Capacity', fontsize=10)
+      #
+      #   ax.grid(True)
+      #   fig.tight_layout()
+      #
+      #   lines, labels = ax.get_legend_handles_labels()
+      #   ax.legend(lines, labels, loc=9, bbox_to_anchor=(0.5, -0.1), ncol=2,prop={'size':10})
+      #
+      #   plt.xlim(0,11000)
+      #   ax.set_ylim(-1.0, 2.0)
+      #
+      #   plt.savefig(filename+'-filter-topology2-capacity.png', bbox_inches='tight')
+      #
+      #   fig, ax = plt.subplots()
+      #   ax.scatter(time, topology2_bolt_filter_2, edgecolors ="black", label="T2 bolt_filter_2", marker="s", facecolors='none', s=10,)
+      #
+      #   ax.set_xlabel('Time/S', fontsize=10)
+      #   ax.set_ylabel('Capacity', fontsize=10)
+      #
+      #   ax.grid(True)
+      #   fig.tight_layout()
+      #
+      #   lines, labels = ax.get_legend_handles_labels()
+      #   ax.legend(lines, labels, loc=9, bbox_to_anchor=(0.5, -0.1), ncol=2,prop={'size':10})
+      #
+      #   plt.xlim(0,11000)
+      # #  ax.set_ylim(-1.0, 3.0)
+      #
+      #   plt.savefig(filename+'-filter2-topology2-capacity.png', bbox_inches='tight')
 
         # fig, ax = plt.subplots()
         # ax.scatter(time, topology2_bolt_aggregate, edgecolors ="blue", label="T2 Latency SLO=50 bolt_aggregate", marker ="D", facecolors='none', s=40,)

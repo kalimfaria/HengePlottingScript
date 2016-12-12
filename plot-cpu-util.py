@@ -30,10 +30,10 @@ def reject_outliers(data, m):
 
 flag = 0
 desc_string = " "
-for i in os.listdir("/Users/fariakalim/exp31/"):
+for i in os.listdir("/Users/fariakalim/exp38/"):
     if i.endswith("util.log") :
         print i
-        f = open("/Users/fariakalim/exp31/"+i, 'r')
+        f = open("/Users/fariakalim/exp38/"+i, 'r')
         filename = f.__getattribute__("name").split(".")[0]
         print filename
         node1_util = []
@@ -110,7 +110,10 @@ for i in os.listdir("/Users/fariakalim/exp31/"):
                         node5_util.append(float(one_line[util]))
                 else:
                     print len(one_line)
-                    if "pc439.emulab.net"  in one_line[node_index]:
+
+                    #if "pc426.emulab.net"  in one_line[node_index]:
+                    if "pc481.emulab.net"  in one_line[node_index]:
+                    #if "pc524.emulab.net"  in one_line[node_index]:
                         node1_util.append(float(one_line[util]))
                         node1_mem.append(float(one_line[mem_index]))
                         node1_five.append(float(one_line[five_mins_util]))
@@ -118,7 +121,9 @@ for i in os.listdir("/Users/fariakalim/exp31/"):
                         node1_system.append(float(one_line[system_index]))
                         node1_wait.append(float(one_line[wait_index]))
                         node1_idle.append(float(one_line[idle_index]))
-                    elif "pc431.emulab.net"  in one_line[node_index]:
+                   # elif "pc557.emulab.net"  in one_line[node_index]:
+                    elif "pc501.emulab.net"  in one_line[node_index]:
+                    #elif "pc534.emulab.net"  in one_line[node_index]:
                         node2_util.append(float(one_line[util]))
                         node2_user.append(float(one_line[user_index]))
                         node2_mem.append(float(one_line[mem_index]))
@@ -127,7 +132,9 @@ for i in os.listdir("/Users/fariakalim/exp31/"):
                         node2_system.append(float(one_line[system_index]))
                         node2_wait.append(float(one_line[wait_index]))
                         time.append(float(one_line[time_index]))
-                    elif "pc423.emulab.net"  in one_line[node_index]:
+                   # elif "pc559.emulab.net"  in one_line[node_index]:
+                    elif "pc517.emulab.net"  in one_line[node_index]:
+                    #elif "pc542.emulab.net"  in one_line[node_index]:
                         node3_util.append(float(one_line[util]))
                         node3_user.append(float(one_line[user_index]))
                         node3_idle.append(float(one_line[idle_index]))
@@ -135,7 +142,9 @@ for i in os.listdir("/Users/fariakalim/exp31/"):
                         node3_mem.append(float(one_line[mem_index]))
                         node3_system.append(float(one_line[system_index]))
                         node3_wait.append(float(one_line[wait_index]))
-                    elif "pc420.emulab.net"  in one_line[node_index]:
+                 #   elif "pc551.emulab.net"  in one_line[node_index]:
+                    elif "pc514.emulab.net"  in one_line[node_index]:
+                    #elif "pc521.emulab.net"  in one_line[node_index]:
                         node4_util.append(float(one_line[util]))
                         node4_user.append(float(one_line[user_index]))
                         node4_idle.append(float(one_line[idle_index]))
@@ -143,7 +152,9 @@ for i in os.listdir("/Users/fariakalim/exp31/"):
                         node4_mem.append(float(one_line[mem_index]))
                         node4_system.append(float(one_line[system_index]))
                         node4_wait.append(float(one_line[wait_index]))
-                    elif "pc435.emulab.net"  in one_line[node_index]:
+                   # elif "pc536.emulab.net"  in one_line[node_index]:
+                    elif "pc486.emulab.net"  in one_line[node_index]:
+                    #elif "pc538.emulab.net"  in one_line[node_index]:
                         node5_util.append(float(one_line[util]))
                         node5_idle.append(float(one_line[idle_index]))
                         node5_five.append(float(one_line[five_mins_util]))
@@ -255,7 +266,8 @@ for i in os.listdir("/Users/fariakalim/exp31/"):
         node5_mem = node5_mem [0:min_length]
 
         x_start = 0#6000
-        x_end = 40000#35000
+        x_end = 60000#35000
+
         fig, ax = plt.subplots()
 #        rebalance_time = [1480135733742,1480136036967,1480136036972,1480136036976,1480136054203,1480136366397,1480136674565,1480136982197,1480137292227,1480137602281,1480137911717,1480138220429,1480138531297,1480138842837,1480139153309,1480139463590,1480139775539,1480140086927,1480140398892,1480140711130,1480141022350,1480141336109,1480141648305,1480141962259,1480142274761,1480142586231,1480142899515,1480143211947,1480143525507,1480143838967,1480144152417,1480144466410,1480144781333,1480145095588,1480145410621,1480145725700,1480146041850,1480146357653,1480146673371,1480146988095,1480147301069,1480147615454,1480147931757,1480148248410,1480148563545,1480148878423,1480149194454,1480149511278,1480149827236,1480150143907,1480150458920,1480150775596,1480151091705,1480151408465,1480151726681,1480152043112,1480152344327,1480152662772,1480152964400,1480153265536,1480153567059,1480153885089,1480154203224,1480154817923,1480156061475,1480156677651,1480156979289,1480159803553]
 

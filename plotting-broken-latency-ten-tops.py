@@ -2,6 +2,8 @@ import os
 
 import matplotlib.pyplot as plt
 import numpy
+from mpl_toolkits.axes_grid1.inset_locator import zoomed_inset_axes
+from mpl_toolkits.axes_grid1.inset_locator import mark_inset
 
 def is_number(s):
     try:
@@ -28,10 +30,10 @@ def reject_outliers(data, m):
 
 flag = 0
 desc_string = " "
-for i in os.listdir("/Users/fariakalim/exp41/"):
+for i in os.listdir("/Users/fariakalim/exp24/"):
     if i.endswith("output.log") :
         print i
-        f = open("/Users/fariakalim/exp41/"+i, 'r')
+        f = open("/Users/fariakalim/exp24/"+i, 'r')
         filename = f.__getattribute__("name").split(".")[0]
         print filename
         topology1_juice = []
@@ -209,8 +211,8 @@ for i in os.listdir("/Users/fariakalim/exp41/"):
                             else:
                                 string = time_for_rebalance[2]
 
-                            #if (len(time_for_rebalance) > 6): # TODO -- GET RID OF IT
-                            str = string + " " + time_for_rebalance[6]
+                            if (len(time_for_rebalance) > 6): # TODO -- GET RID OF IT
+                                str = string + " " + time_for_rebalance[6]
                             #rebalance_desc.append(string + " "+ time_for_rebalance[6]) # should give topology name space num workers
                             i = 7
                             while len(time_for_rebalance) > i:
@@ -283,7 +285,7 @@ for i in os.listdir("/Users/fariakalim/exp41/"):
         print min_length
         if min_length > len(topology5_juice):
             min_length = len(topology5_juice)
-
+        print min_length
         if min_length > len(topology6_juice):
             min_length = len(topology6_juice)
         print min_length
@@ -400,36 +402,51 @@ for i in os.listdir("/Users/fariakalim/exp41/"):
         input_at_source_10 = input_at_source_10[0:min_length]
         output_at_sink_10 = output_at_sink_10[0:min_length]
 
-        fig, ax = plt.subplots()
+        fig, (ax, ax1) = plt.subplots(2, 1, sharex=True)
+        ax1.set_ylim(-0.5,0.3)
+        ax.set_ylim(0.4,1.2)
+        ax.scatter(time, topology1_juice, edgecolors ="blue", label="T1 Juice", marker ="D", facecolors='none', s=40,)
+        ax1.scatter(time, topology1_juice, edgecolors ="blue", label="T1 Juice", marker ="D", facecolors='none', s=40,)
+        # ax.scatter(time, topology2_juice, edgecolors ="green", label="T2 Juice Latency-SLO=70 Utility=35", marker =">", facecolors='none', s=40,)
+        # ax.scatter(time, topology3_juice, edgecolors ="red", label="T3 Juice Latency-SLO=70 Utility=35", marker="h", facecolors='none', s=40, )
+        # ax.scatter(time, topology4_juice, edgecolors ="c", label="T4 Juice Latency-SLO=70 Utility=35", marker="s", facecolors='none', s=40,)
+        # ax.scatter(time, topology5_juice, edgecolors ="m", label="T5 Juice Latency-SLO=50 Utility=35", marker =">", facecolors='none', s=40,)
+        # ax.scatter(time, topology6_juice, edgecolors ="black", label="T6 Juice SLO=1 Utility=5", marker="h", facecolors='none', s=40, )
+        # ax.scatter(time, topology7_juice, edgecolors ="darkorange", label="T7 Juice SLO=1 Utility=5", marker="s", facecolors='none', s=40,)
+        # ax.scatter(time, topology8_juice, edgecolors ="#456648", label="T8 Latency SLO=50 Utility=35", marker =">", facecolors='none', s=40,)
+        # ax.scatter(time, topology9_juice, edgecolors ="y", label="T9 Juice SLO=1 Utility=5", marker="h", facecolors='none', s=40, )
+        # ax.scatter(time, topology10_juice, edgecolors ="#886F4C", label="T10 Juice SLO=1 Utility=5", marker="s", facecolors='none', s=40,)
 
- #       ax.scatter(time, topology1_juice, edgecolors ="blue", label="T1 Juice", marker ="D", facecolors='none', s=40,)
- #       ax.scatter(time, topology2_juice, edgecolors ="green", label="T2 Juice Latency-SLO=70 Utility=35", marker =">", facecolors='none', s=40,)
- #       ax.scatter(time, topology3_juice, edgecolors ="red", label="T3 Juice Latency-SLO=70 Utility=35", marker="h", facecolors='none', s=40, )
- #       ax.scatter(time, topology4_juice, edgecolors ="c", label="T4 Juice Latency-SLO=70 Utility=35", marker="s", facecolors='none', s=40,)
- #       ax.scatter(time, topology5_juice, edgecolors ="m", label="T5 Juice Latency-SLO=50 Utility=35", marker =">", facecolors='none', s=40,)
- #       ax.scatter(time, topology6_juice, edgecolors ="black", label="T6 Juice SLO=1 Utility=5", marker="h", facecolors='none', s=40, )
- #       ax.scatter(time, topology7_juice, edgecolors ="darkorange", label="T7 Juice SLO=1 Utility=5", marker="s", facecolors='none', s=40,)
- #       ax.scatter(time, topology8_juice, edgecolors ="#456648", label="T8 Latency SLO=50 Utility=35", marker =">", facecolors='none', s=40,)
- #       ax.scatter(time, topology9_juice, edgecolors ="y", label="T9 Juice SLO=1 Utility=5", marker="h", facecolors='none', s=40, )
- #       ax.scatter(time, topology10_juice, edgecolors ="#886F4C", label="T10 Juice SLO=1 Utility=5", marker="s", facecolors='none', s=40,)
+
 
 
         ax2 = ax.twinx()
+        ax3 = ax1.twinx()
+
+        ax3.set_ylim(0,250)
+        ax2.set_ylim(200000,1500000)
+
+
+        ax2.spines['bottom'].set_visible(False)
+        ax3.spines['top'].set_visible(False)
+
         ax2.scatter(time, topology1_latency, edgecolors ="green", label="T1 Latency", marker ="*", facecolors='none', s=40,)
-        ax2.scatter(time, topology2_latency, edgecolors ="#1f78b4", label="T2 Latency", marker ="<", facecolors='none', s=40,)
-        ax2.scatter(time, topology3_latency, edgecolors ="#b2df8a", label="T3 Latency", marker="D", facecolors='none', s=40, )
-        ax2.scatter(time, topology4_latency, edgecolors ="#33a02c", label="T4 Latency", marker="+", facecolors='none', s=40,)
-        ax2.scatter(time, topology5_latency, edgecolors ="#fb9a99", label="T5 Latency", marker ="<", facecolors='none', s=40,)
-        ax2.scatter(time, topology6_latency, edgecolors ="#e31a1c", label="T6 Latency", marker="D", facecolors='none', s=40, )
-        ax2.scatter(time, topology7_latency, edgecolors ="#fdbf6f", label="T7 Latency", marker="+", facecolors='none', s=40,)
-        ax2.scatter(time, topology8_latency, edgecolors ="#ff7f00", label="T8 Latency", marker ="*", facecolors='none', s=40,)
-        ax2.scatter(time, topology9_latency, edgecolors ="#cab2d6", label="T9 Latency", marker="h", facecolors='none', s=40, )
-        ax2.scatter(time, topology10_latency, edgecolors ="#ffff99", label="T10 Latency", marker="h", facecolors='none', s=40,)
+        ax3.scatter(time, topology1_latency, edgecolors ="green", label="T1 Latency", marker ="*", facecolors='none', s=40,)
+   #     ax2.scatter(time, topology1_latency, edgecolors ="#a6cee3", label="T1 Latency", marker ="*", facecolors='none', s=40,)
+   #     ax2.scatter(time, topology2_latency, edgecolors ="#1f78b4", label="T2 Latency", marker ="<", facecolors='none', s=40,)
+   #     ax2.scatter(time, topology3_latency, edgecolors ="#b2df8a", label="T3 Latency", marker="D", facecolors='none', s=40, )
+   #     ax2.scatter(time, topology4_latency, edgecolors ="#33a02c", label="T4 Latency", marker="+", facecolors='none', s=40,)
+   #     ax2.scatter(time, topology5_latency, edgecolors ="#fb9a99", label="T5 Latency", marker ="<", facecolors='none', s=40,)
+   #     ax2.scatter(time, topology6_latency, edgecolors ="#e31a1c", label="T6 Latency", marker="D", facecolors='none', s=40, )
+   #     ax2.scatter(time, topology7_latency, edgecolors ="#fdbf6f", label="T7 Latency", marker="+", facecolors='none', s=40,)
+   #     ax2.scatter(time, topology8_latency, edgecolors ="#ff7f00", label="T8 Latency", marker ="*", facecolors='none', s=40,)
+   #     ax2.scatter(time, topology9_latency, edgecolors ="#cab2d6", label="T9 Latency", marker="h", facecolors='none', s=40, )
+   #     ax2.scatter(time, topology10_latency, edgecolors ="#ffff99", label="T10 Latency", marker="h", facecolors='none', s=40,)
 
-        ax.set_xlabel('Time/s', fontsize=10)
+        ax1.set_xlabel('Time/s', fontsize=10)
         ax.set_ylabel('Juice', fontsize=10)
-        ax2.set_ylabel('Latency/ms', fontsize=10)
-
+        ax.set_ylabel('Latency/ms', fontsize=10)
+        ax1.set_ylabel('Latency/ms', fontsize=10)
         #
         ax.grid(True)
         fig.tight_layout()
@@ -441,26 +458,32 @@ for i in os.listdir("/Users/fariakalim/exp41/"):
         clrs = ["k", "k", "k", "k", "k", "k", "k"]
         linestyles = [ '--' , '-.' , 'solid', 'dotted']
         for j in range(0, len(rebalance_time)):
-            if (rebalance_time[j] >= 35000 and rebalance_time[j] <= 105000):# and ("T2" in rebalance_desc[j]):
+            if (rebalance_time[j] >=0 and rebalance_time[j] <= 23000) and ("T1" in rebalance_desc[j]):
            #if "T1" in rebalance_desc[j]:
                 la = rebalance_desc[j]
                 ax.vlines(x=rebalance_time[j], ymax=6 , ymin=-1,  colors=clrs[j%7], linestyle= 'solid', label=la)
+                ax1.vlines(x=rebalance_time[j], ymax=6 , ymin=-1,  colors=clrs[j%7], linestyle= 'solid', label=la)
 
         lines, labels = ax.get_legend_handles_labels()
         lines2, labels2 = ax2.get_legend_handles_labels()
-        ax.legend(lines  + lines2, labels + labels2  , loc=9, bbox_to_anchor=(0.5, -0.1), ncol=2,prop={'size':10}) #, label=la,)#linestyles[j%4]
+        ax.legend(lines  + lines2, labels + labels2  , loc=9, bbox_to_anchor=(0.5, -1.3), ncol=2,prop={'size':10}) #, label=la,)#linestyles[j%4]
 
+    #    plt.text(450, -90000, '(10,4)')
+    #    plt.text(3550, -90000, '(12,4)')
+    #    plt.text(5700, -90000, '(14,4)')
+    #    plt.text(7200, -90000, '(14,6)')
+    #    plt.text(8700, -90000, '(14,8)')
+     #   plt.xlim(0,10500)#55000)
         #ax2.set_yscale('log')
-        #plt.xlim(0,23000)
+        plt.xlim(0,23000)
 
-        ax.set_ylim(0.95, 1.05)
-       # ax2.set_ylim(0,200)
+      #  ax.set_ylim(0.8, 1.2)
+       # ax2.set_ylim(0,400)
 
         #ax2.set_ylim(-10000,800000)
-        plt.xlim(35000,105000)
 
-        plt.savefig(filename+'.png', bbox_inches='tight')
-
+        plt.savefig(filename+'-T1-snippet.png', bbox_inches='tight')
+        exit()
 
 #plotting utilities
 
@@ -482,8 +505,8 @@ for i in os.listdir("/Users/fariakalim/exp41/"):
         ax.grid(True)
         fig.tight_layout()
 
-        xlim_start = 35000
-        xlim_end = 105000
+        xlim_start = 0#9000#35000
+        xlim_end = 34500#35000 #34500#45000
         linestyles = [ '--' , '-.' , 'solid', 'dotted']
         for j in range(0, len(rebalance_time)):
             if (rebalance_time[j] >=xlim_start and rebalance_time[j] <= xlim_end):
@@ -533,12 +556,15 @@ for i in os.listdir("/Users/fariakalim/exp41/"):
      #   ax.scatter(time, output_at_sink_6, edgecolors = "r", label= "T6 output", facecolor='none', marker = "h", s=40)
         ax.scatter(time, input_at_source_6, edgecolors = "r", label= "T6 input", facecolor='none', marker = "h", s=40)
         ax.scatter(time, input_at_source_7, edgecolors = "purple", label= "T7 input", facecolor='none',marker = "v" , s=40)
-     #   # ax.scatter(time, output_at_sink_7, edgecolors = "magenta", label= "T7 output" , facecolor='none', marker = "s", s=40)
+       # ax.scatter(time, output_at_sink_7, edgecolors = "magenta", label= "T7 output" , facecolor='none', marker = "s", s=40)
         ax.scatter(time, input_at_source_8, edgecolors = "brown", label= "T8 input", facecolor='none',marker = "v" , s=40)
-     #    #
+        #
         ax.scatter(time, input_at_source_9, edgecolors = "yellow", label= "T9 input", facecolor='none',marker = "v" , s=40)
-     #    #
+        #
         ax.scatter(time, input_at_source_10, edgecolors = "black", label= "T10 input", facecolor='none',marker = "v" , s=40)
+
+
+
 
         for j in range(0, len(rebalance_time)):
             la = rebalance_desc[j]#target[j] + " " + target_operator[j] + " " + victim[j] + " " + victim_operator[j]
