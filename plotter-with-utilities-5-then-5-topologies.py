@@ -36,7 +36,7 @@ for i in os.listdir("/Users/fariakalim/exp113/"):
     if i.endswith("output.log"):
         f = open("/Users/fariakalim/exp113/" + i, 'r')
         filename = f.__getattribute__("name").split(".")[0]
-        print filename
+
         topology1_juice = []
         topology2_juice = []
         topology3_juice = []
@@ -334,7 +334,7 @@ for i in os.listdir("/Users/fariakalim/exp113/"):
                 if "-n" not in line:
                     if flag == 0:
                         string = ""
-                        # print time_for_rebalance[2]
+
                         if time_for_rebalance[2] == "production-topology10":
                             string = "T10"
                         elif time_for_rebalance[2] == "production-topology11":
@@ -431,7 +431,7 @@ for i in os.listdir("/Users/fariakalim/exp113/"):
             rebalance_time[i] = (rebalance_time[i] - val) / 1000
 
         min_length = len(time)
-        print min_length
+
 
         if min_length > len(topology1_juice):
             min_length = len(topology1_juice)
@@ -444,30 +444,6 @@ for i in os.listdir("/Users/fariakalim/exp113/"):
         if min_length > len(topology5_juice):
             min_length = len(topology5_juice)
 
-        if min_length > len(topology6_juice):
-            min_length = len(topology6_juice)
-        if min_length > len(topology7_juice):
-            min_length = len(topology7_juice)
-        if min_length > len(topology8_juice):
-            min_length = len(topology8_juice)
-        if min_length > len(topology9_juice):
-            min_length = len(topology9_juice)
-        if min_length > len(topology10_juice):
-            min_length = len(topology10_juice)
-        #
-        # if min_length > len(topology11_juice):
-        #     min_length = len(topology11_juice)
-        # if min_length > len(topology12_juice):
-        #     min_length = len(topology12_juice)
-        # if min_length > len(topology13_juice):
-        #     min_length = len(topology13_juice)
-        # if min_length > len(topology14_juice):
-        #     min_length = len(topology14_juice)
-        # if min_length > len(topology15_juice):
-        #     min_length = len(topology15_juice)
-
-        # print min_length
-        #
         if min_length > len(topology1_latency):
             min_length = len(topology1_latency)
         if min_length > len(topology2_latency):
@@ -478,28 +454,6 @@ for i in os.listdir("/Users/fariakalim/exp113/"):
             min_length = len(topology4_latency)
         if min_length > len(topology5_latency):
             min_length = len(topology5_latency)
-
-        if min_length > len(topology6_latency):
-            min_length = len(topology6_latency)
-        if min_length > len(topology7_latency):
-            min_length = len(topology7_latency)
-        if min_length > len(topology8_latency):
-            min_length = len(topology8_latency)
-        if min_length > len(topology9_latency):
-            min_length = len(topology9_latency)
-        if min_length > len(topology10_latency):
-            min_length = len(topology10_latency)
-        #
-        # if min_length > len(topology11_latency):
-        #     min_length = len(topology11_latency)
-        # if min_length > len(topology12_latency):
-        #     min_length = len(topology12_latency)
-        # if min_length > len(topology13_latency):
-        #     min_length = len(topology13_latency)
-        # if min_length > len(topology14_latency):
-        #     min_length = len(topology14_latency)
-        # if min_length > len(topology15_latency):
-        #     min_length = len(topology15_latency)
 
         if min_length > len(topology1_utility):
             min_length = len(topology1_utility)
@@ -512,126 +466,267 @@ for i in os.listdir("/Users/fariakalim/exp113/"):
         if min_length > len(topology5_utility):
             min_length = len(topology5_utility)
 
-        if min_length > len(topology6_utility):
-            min_length = len(topology6_utility)
-        if min_length > len(topology7_utility):
-            min_length = len(topology7_utility)
-        if min_length > len(topology8_utility):
-            min_length = len(topology8_utility)
-        if min_length > len(topology9_utility):
-            min_length = len(topology9_utility)
-        if min_length > len(topology10_utility):
-            min_length = len(topology10_utility)
-
-        # if min_length > len(topology11_utility):
-        #     min_length = len(topology11_utility)
-        # if min_length > len(topology12_utility):
-        #     min_length = len(topology12_utility)
-        # if min_length > len(topology13_utility):
-        #     min_length = len(topology13_utility)
-        # if min_length > len(topology14_utility):
-        #     min_length = len(topology14_utility)
-        # if min_length > len(topology15_utility):
-        #     min_length = len(topology15_utility)
-
         time = time[0:min_length]
         topology1_juice = topology1_juice[0:min_length]
         topology2_juice = topology2_juice[0:min_length]
         topology3_juice = topology3_juice[0:min_length]
         topology4_juice = topology4_juice[0:min_length]
         topology5_juice = topology5_juice[0:min_length]
-        topology6_juice = topology6_juice[0:min_length]
-        topology7_juice = topology7_juice[0:min_length]
-        topology8_juice = topology8_juice[0:min_length]
-        topology9_juice = topology9_juice[0:min_length]
-        topology10_juice = topology10_juice[0:min_length]
-        topology11_juice = topology11_juice[0:min_length]
-        topology12_juice = topology12_juice[0:min_length]
-        topology13_juice = topology13_juice[0:min_length]
-        topology14_juice = topology14_juice[0:min_length]
-        topology15_juice = topology15_juice[0:min_length]
 
         topology1_latency = topology1_latency[0:min_length]
         topology2_latency = topology2_latency[0:min_length]
         topology3_latency = topology3_latency[0:min_length]
         topology4_latency = topology4_latency[0:min_length]
         topology5_latency = topology5_latency[0:min_length]
-        topology6_latency = topology6_latency[0:min_length]
-        topology7_latency = topology7_latency[0:min_length]
-        topology8_latency = topology8_latency[0:min_length]
-        topology9_latency = topology9_latency[0:min_length]
-        topology10_latency = topology10_latency[0:min_length]
-        topology11_latency = topology11_latency[0:min_length]
-        topology12_latency = topology12_latency[0:min_length]
-        topology13_latency = topology13_latency[0:min_length]
-        topology14_latency = topology14_latency[0:min_length]
-        topology15_latency = topology15_latency[0:min_length]
 
         topology1_utility = topology1_utility[0:min_length]
         topology2_utility = topology2_utility[0:min_length]
         topology3_utility = topology3_utility[0:min_length]
         topology4_utility = topology4_utility[0:min_length]
         topology5_utility = topology5_utility[0:min_length]
-        topology6_utility = topology6_utility[0:min_length]
-        topology7_utility = topology7_utility[0:min_length]
-        topology8_utility = topology8_utility[0:min_length]
-        topology9_utility = topology9_utility[0:min_length]
-        topology11_utility = topology11_utility[0:min_length]
-        topology10_utility = topology10_utility[0:min_length]
-        topology12_utility = topology12_utility[0:min_length]
-        topology13_utility = topology13_utility[0:min_length]
-        topology14_utility = topology14_utility[0:min_length]
-        topology15_utility = topology15_utility[0:min_length]
 
         topology1_99tail_latency = topology1_99tail_latency[0:min_length]
         topology2_99tail_latency = topology2_99tail_latency[0:min_length]
         topology3_99tail_latency = topology3_99tail_latency[0:min_length]
         topology4_99tail_latency = topology4_99tail_latency[0:min_length]
         topology5_99tail_latency = topology5_99tail_latency[0:min_length]
-        topology6_99tail_latency = topology6_99tail_latency[0:min_length]
-        topology7_99tail_latency = topology7_99tail_latency[0:min_length]
-        topology8_99tail_latency = topology8_99tail_latency[0:min_length]
-        topology9_99tail_latency = topology9_99tail_latency[0:min_length]
-        topology10_99tail_latency = topology10_99tail_latency[0:min_length]
-        topology11_99tail_latency = topology11_99tail_latency[0:min_length]
-        topology12_99tail_latency = topology12_99tail_latency[0:min_length]
-        topology13_99tail_latency = topology13_99tail_latency[0:min_length]
-        topology14_99tail_latency = topology14_99tail_latency[0:min_length]
-        topology15_99tail_latency = topology15_99tail_latency[0:min_length]
 
         topology1_75tail_latency = topology1_75tail_latency[0:min_length]
         topology2_75tail_latency = topology2_75tail_latency[0:min_length]
         topology3_75tail_latency = topology3_75tail_latency[0:min_length]
         topology4_75tail_latency = topology4_75tail_latency[0:min_length]
         topology5_75tail_latency = topology5_75tail_latency[0:min_length]
-        topology6_75tail_latency = topology6_75tail_latency[0:min_length]
-        topology7_75tail_latency = topology7_75tail_latency[0:min_length]
-        topology9_75tail_latency = topology9_75tail_latency[0:min_length]
-        topology10_75tail_latency = topology10_75tail_latency[0:min_length]
-        topology11_75tail_latency = topology11_75tail_latency[0:min_length]
-        topology12_75tail_latency = topology12_75tail_latency[0:min_length]
-        topology13_75tail_latency = topology13_75tail_latency[0:min_length]
-        topology14_75tail_latency = topology14_75tail_latency[0:min_length]
-        topology15_75tail_latency = topology15_75tail_latency[0:min_length]
 
         topology1_50tail_latency = topology1_50tail_latency[0:min_length]
         topology2_50tail_latency = topology2_50tail_latency[0:min_length]
         topology3_50tail_latency = topology3_50tail_latency[0:min_length]
         topology4_50tail_latency = topology4_50tail_latency[0:min_length]
         topology5_50tail_latency = topology5_50tail_latency[0:min_length]
-        topology6_50tail_latency = topology6_50tail_latency[0:min_length]
-        topology7_50tail_latency = topology7_50tail_latency[0:min_length]
-        topology8_50tail_latency = topology8_50tail_latency[0:min_length]
-        topology9_50tail_latency = topology9_50tail_latency[0:min_length]
-        topology10_50tail_latency = topology10_50tail_latency[0:min_length]
-        topology11_50tail_latency = topology11_50tail_latency[0:min_length]
-        topology12_50tail_latency = topology12_50tail_latency[0:min_length]
-        topology13_50tail_latency = topology13_50tail_latency[0:min_length]
-        topology14_50tail_latency = topology14_50tail_latency[0:min_length]
-        topology15_50tail_latency = topology15_50tail_latency[0:min_length]
 
-        print input_at_source_1
-        print output_at_sink_1
+        min_length1 = len(topology6_juice)
+        print "min_length1", min_length1, len(topology7_juice), len(topology8_juice)
+        if min_length1 > len(topology7_juice):
+            min_length1 = len(topology7_juice)
+        if min_length1 > len(topology8_juice):
+            min_length1 = len(topology8_juice)
+        if min_length1 > len(topology9_juice):
+            min_length1 = len(topology9_juice)
+        if min_length1 > len(topology10_juice):
+            min_length1 = len(topology10_juice)
+
+
+        if min_length1 > len(topology6_latency):
+            min_length1 = len(topology6_latency)
+        if min_length1 > len(topology7_latency):
+            min_length1 = len(topology7_latency)
+        if min_length1 > len(topology8_latency):
+            min_length1 = len(topology8_latency)
+        if min_length1 > len(topology9_latency):
+            min_length1 = len(topology9_latency)
+        if min_length1 > len(topology10_latency):
+            min_length1 = len(topology10_latency)
+
+
+        if min_length1 > len(topology6_utility):
+            min_length1 = len(topology6_utility)
+        if min_length1 > len(topology7_utility):
+            min_length1 = len(topology7_utility)
+        if min_length1 > len(topology8_utility):
+            min_length1 = len(topology8_utility)
+        if min_length1 > len(topology9_utility):
+            min_length1 = len(topology9_utility)
+        if min_length1 > len(topology10_utility):
+            min_length1 = len(topology10_utility)
+
+
+        topology6_juice = topology6_juice[0:min_length1]
+        topology7_juice = topology7_juice[0:min_length1]
+        topology8_juice = topology8_juice[0:min_length1]
+        topology9_juice = topology9_juice[0:min_length1]
+        topology10_juice = topology10_juice[0:min_length1]
+
+        topology6_latency = topology6_latency[0:min_length1]
+        topology7_latency = topology7_latency[0:min_length1]
+        topology8_latency = topology8_latency[0:min_length1]
+        topology9_latency = topology9_latency[0:min_length1]
+        topology10_latency = topology10_latency[0:min_length1]
+
+        topology6_utility = topology6_utility[0:min_length1]
+        topology7_utility = topology7_utility[0:min_length1]
+        topology8_utility = topology8_utility[0:min_length1]
+        topology9_utility = topology9_utility[0:min_length1]
+        topology10_utility = topology10_utility[0:min_length1]
+
+        topology6_99tail_latency = topology6_99tail_latency[0:min_length1]
+        topology7_99tail_latency = topology7_99tail_latency[0:min_length1]
+        topology8_99tail_latency = topology8_99tail_latency[0:min_length1]
+        topology9_99tail_latency = topology9_99tail_latency[0:min_length1]
+        topology10_99tail_latency = topology10_99tail_latency[0:min_length1]
+
+        topology6_75tail_latency = topology6_75tail_latency[0:min_length1]
+        topology8_75tail_latency = topology8_75tail_latency[0:min_length1]
+        topology7_75tail_latency = topology7_75tail_latency[0:min_length1]
+        topology9_75tail_latency = topology9_75tail_latency[0:min_length1]
+        topology10_75tail_latency = topology10_75tail_latency[0:min_length1]
+
+
+        topology6_50tail_latency = topology6_50tail_latency[0:min_length1]
+        topology7_50tail_latency = topology7_50tail_latency[0:min_length1]
+        topology8_50tail_latency = topology8_50tail_latency[0:min_length1]
+        topology9_50tail_latency = topology9_50tail_latency[0:min_length1]
+        topology10_50tail_latency = topology10_50tail_latency[0:min_length1]
+
+        diff = min_length - min_length1
+        for x in xrange(0,diff):
+            topology6_juice.insert(0,0)
+            topology7_juice.insert(0,0)
+            topology8_juice.insert(0,0)
+            topology9_juice.insert(0,0)
+            topology10_juice.insert(0,0)
+
+            topology6_latency.insert(0,0)
+            topology7_latency.insert(0,0)
+            topology8_latency.insert(0,0)
+            topology9_latency.insert(0,0)
+            topology10_latency.insert(0,0)
+
+
+            topology6_utility.insert(0,0)
+            topology7_utility.insert(0,0)
+            topology8_utility.insert(0,0)
+            topology9_utility.insert(0,0)
+            topology10_utility.insert(0,0)
+
+
+            topology6_99tail_latency.insert(0,0)
+            topology7_99tail_latency.insert(0,0)
+            topology8_99tail_latency.insert(0,0)
+            topology9_99tail_latency.insert(0,0)
+            topology10_99tail_latency.insert(0,0)
+
+
+            topology6_75tail_latency.insert(0,0)
+            topology7_75tail_latency.insert(0,0)
+            topology8_75tail_latency.insert(0,0)
+            topology9_75tail_latency.insert(0,0)
+            topology10_75tail_latency.insert(0,0)
+
+            topology6_50tail_latency.insert(0,0)
+            topology7_50tail_latency.insert(0,0)
+            topology8_50tail_latency.insert(0,0)
+            topology9_50tail_latency.insert(0,0)
+            topology10_50tail_latency.insert(0,0)
+
+
+        min_length2 = len(topology11_juice)
+        if min_length2 > len(topology12_juice):
+            min_length2 = len(topology12_juice)
+        if min_length2 > len(topology13_juice):
+            min_length2 = len(topology13_juice)
+        if min_length2 > len(topology14_juice):
+            min_length2 = len(topology14_juice)
+        if min_length2 > len(topology15_juice):
+            min_length2 = len(topology15_juice)
+
+
+        if min_length2 > len(topology11_latency):
+            min_length2 = len(topology11_latency)
+        if min_length2 > len(topology12_latency):
+            min_length2 = len(topology12_latency)
+        if min_length2 > len(topology13_latency):
+            min_length2 = len(topology13_latency)
+        if min_length2 > len(topology14_latency):
+            min_length2 = len(topology14_latency)
+        if min_length2 > len(topology15_latency):
+            min_length2 = len(topology15_latency)
+
+        if min_length2 > len(topology11_utility):
+            min_length2 = len(topology11_utility)
+        if min_length2 > len(topology12_utility):
+            min_length2 = len(topology12_utility)
+        if min_length2 > len(topology13_utility):
+            min_length2 = len(topology13_utility)
+        if min_length2 > len(topology14_utility):
+            min_length2 = len(topology14_utility)
+        if min_length2 > len(topology15_utility):
+            min_length2 = len(topology15_utility)
+
+        topology11_utility = topology11_utility[0:min_length2]
+        topology12_utility = topology12_utility[0:min_length2]
+        topology13_utility = topology13_utility[0:min_length2]
+        topology14_utility = topology14_utility[0:min_length2]
+        topology15_utility = topology15_utility[0:min_length2]
+
+        topology11_juice = topology11_juice[0:min_length2]
+        topology12_juice = topology12_juice[0:min_length2]
+        topology13_juice = topology13_juice[0:min_length2]
+        topology14_juice = topology14_juice[0:min_length2]
+        topology15_juice = topology15_juice[0:min_length2]
+
+        topology11_latency = topology11_latency[0:min_length2]
+        topology12_latency = topology12_latency[0:min_length2]
+        topology13_latency = topology13_latency[0:min_length2]
+        topology14_latency = topology14_latency[0:min_length2]
+        topology15_latency = topology15_latency[0:min_length2]
+
+        topology11_99tail_latency = topology11_99tail_latency[0:min_length2]
+        topology12_99tail_latency = topology12_99tail_latency[0:min_length2]
+        topology13_99tail_latency = topology13_99tail_latency[0:min_length2]
+        topology14_99tail_latency = topology14_99tail_latency[0:min_length2]
+        topology15_99tail_latency = topology15_99tail_latency[0:min_length2]
+
+        topology11_75tail_latency = topology11_75tail_latency[0:min_length2]
+        topology12_75tail_latency = topology12_75tail_latency[0:min_length2]
+        topology13_75tail_latency = topology13_75tail_latency[0:min_length2]
+        topology14_75tail_latency = topology14_75tail_latency[0:min_length2]
+        topology15_75tail_latency = topology15_75tail_latency[0:min_length2]
+
+        topology11_50tail_latency = topology11_50tail_latency[0:min_length2]
+        topology12_50tail_latency = topology12_50tail_latency[0:min_length2]
+        topology13_50tail_latency = topology13_50tail_latency[0:min_length2]
+        topology14_50tail_latency = topology14_50tail_latency[0:min_length2]
+        topology15_50tail_latency = topology15_50tail_latency[0:min_length2]
+
+        diff = min_length - min_length2
+        for x in xrange(0,diff):
+            topology11_juice.insert(0,0)
+            topology12_juice.insert(0,0)
+            topology13_juice.insert(0,0)
+            topology14_juice.insert(0,0)
+            topology15_juice.insert(0,0)
+
+            topology11_latency.insert(0,0)
+            topology12_latency.insert(0,0)
+            topology13_latency.insert(0,0)
+            topology14_latency.insert(0,0)
+            topology15_latency.insert(0,0)
+
+
+            topology11_utility.insert(0,0)
+            topology12_utility.insert(0,0)
+            topology13_utility.insert(0,0)
+            topology14_utility.insert(0,0)
+            topology15_utility.insert(0,0)
+
+
+            topology11_99tail_latency.insert(0,0)
+            topology12_99tail_latency.insert(0,0)
+            topology13_99tail_latency.insert(0,0)
+            topology14_99tail_latency.insert(0,0)
+            topology15_99tail_latency.insert(0,0)
+
+            topology11_75tail_latency.insert(0,0)
+            topology12_75tail_latency.insert(0,0)
+            topology13_75tail_latency.insert(0,0)
+            topology14_75tail_latency.insert(0,0)
+            topology14_75tail_latency.insert(0,0)
+
+            topology11_50tail_latency.insert(0,0)
+            topology12_50tail_latency.insert(0,0)
+            topology13_50tail_latency.insert(0,0)
+            topology14_50tail_latency.insert(0,0)
+            topology15_50tail_latency.insert(0,0)
+
         input_at_source_1 = input_at_source_1[0:min_length]
         output_at_sink_1 = output_at_sink_1[0:min_length]
         input_at_source_2 = input_at_source_2[0:min_length]
@@ -677,7 +772,6 @@ for i in os.listdir("/Users/fariakalim/exp113/"):
         print topology8_juice
         print topology9_juice
         print topology10_juice
-        print topology11_juice
 
         ax2 = ax.twinx()
 
@@ -697,11 +791,11 @@ for i in os.listdir("/Users/fariakalim/exp113/"):
         ax2.scatter(time, topology9_latency, edgecolors="#cab2d6", label="T9 Latency", marker="h", facecolors='none',s=40, )
         ax2.scatter(time, topology10_latency, edgecolors="#ffff99", label="T10 Latency", marker="h", facecolors='none',s=40, )
         #
-        # ax2.scatter(time, topology11_latency, edgecolors="#886A1F", label="T11 Latency", marker="h", facecolors='none',s=40, )
-        # ax2.scatter(time, topology12_latency, edgecolors="#886A1F", label="T12 Latency", marker="h", facecolors='none',s=40, )
-        # ax2.scatter(time, topology13_latency, edgecolors="#886A1F", label="T13 Latency", marker="h", facecolors='none',s=40, )
-        # ax2.scatter(time, topology14_latency, edgecolors="#886A1F", label="T14 Latency", marker="h", facecolors='none',s=40, )
-        # ax2.scatter(time, topology15_latency, edgecolors="#886A1F", label="T15 Latency", marker="h", facecolors='none',s=40, )
+        ax2.scatter(time, topology11_latency, edgecolors="#123A1F", label="T11 Latency", marker="h", facecolors='none',s=40, )
+        ax2.scatter(time, topology12_latency, edgecolors="#AAAB2C", label="T12 Latency", marker="h", facecolors='none',s=40, )
+        ax2.scatter(time, topology13_latency, edgecolors="#ABC123", label="T13 Latency", marker="h", facecolors='none',s=40, )
+        ax2.scatter(time, topology14_latency, edgecolors="#886A1F", label="T14 Latency", marker="h", facecolors='none',s=40, )
+        ax2.scatter(time, topology15_latency, edgecolors="#999999", label="T15 Latency", marker="h", facecolors='none',s=40, )
 
         # ax2.scatter(time, topology1_99tail_latency, edgecolors ="green", label="T1 Latency", marker ="*", facecolors='none', s=40,)
         # ax2.scatter(time, topology2_99tail_latency, edgecolors ="#1f78b4", label="T2 Latency", marker ="<", facecolors='none', s=40,)
@@ -733,11 +827,10 @@ for i in os.listdir("/Users/fariakalim/exp113/"):
         print "Rebalance desc", rebalance_desc
         for j in range(0, len(rebalance_time)):
             # if (rebalance_time[j] >= 20000 and rebalance_time[j] <= 30000):# and ("T2" in rebalance_desc[j]):
-            print rebalance_time[j], rebalance_desc[j]
+            print rebalance_time[j]
             la = rebalance_desc[j]
             ax.vlines(x=rebalance_time[j], ymax=6, ymin=-1, colors=clrs[j % 7], linestyle='solid', label=la)
 
-        print "end"
 
         lines, labels = ax.get_legend_handles_labels()
         lines2, labels2 = ax2.get_legend_handles_labels()
@@ -745,8 +838,8 @@ for i in os.listdir("/Users/fariakalim/exp113/"):
                    prop={'size': 10})  # , label=la,)#linestyles[j%4]
 
         ax.set_ylim(0, 1.1)
-        #ax2.set_ylim(0, 60)
-        plt.xlim(0, 10000)
+        ax2.set_ylim(0, 100)
+        #plt.xlim(0, 15000)
         plt.savefig(filename + '-latencies.png', bbox_inches='tight')
 
         fig, ax = plt.subplots()
@@ -762,11 +855,11 @@ for i in os.listdir("/Users/fariakalim/exp113/"):
         ax.scatter(time, topology9_juice, edgecolors="y", label="T9 Juice SLO=1 Utility=5", marker="h",facecolors='none', s=40, )
         ax.scatter(time, topology10_juice, edgecolors="#886F4C", label="T10 Juice SLO=1 Utility=5", marker="s",facecolors='none', s=40, )
 
-        # ax.scatter(time, topology11_juice, edgecolors="#886A1F", label="T11 Juice SLO=1 Utility=5", marker="s",facecolors='none', s=40, )
-        # ax.scatter(time, topology12_juice, edgecolors="y", label="T12 Juice SLO=1 Utility=5", marker="h",facecolors='none', s=40, )
-        # ax.scatter(time, topology13_juice, edgecolors="#886F4C", label="T13 Juice SLO=1 Utility=5", marker="s",facecolors='none', s=40, )
-        # ax.scatter(time, topology14_juice, edgecolors="y", label="T14 Juice SLO=1 Utility=5", marker="h",facecolors='none', s=40, )
-        # ax.scatter(time, topology15_juice, edgecolors="#886F4C", label="T15 Juice SLO=1 Utility=5", marker="s",facecolors='none', s=40)
+        ax.scatter(time, topology11_juice, edgecolors="#123A1F", label="T11 Juice SLO=1 Utility=5", marker="s",facecolors='none', s=40, )
+        ax.scatter(time, topology12_juice, edgecolors="#AAAB2C", label="T12 Juice SLO=1 Utility=5", marker="h",facecolors='none', s=40, )
+        ax.scatter(time, topology13_juice, edgecolors="#ABC123", label="T13 Juice SLO=1 Utility=5", marker="s",facecolors='none', s=40, )
+        ax.scatter(time, topology14_juice, edgecolors="#886A1F", label="T14 Juice SLO=1 Utility=5", marker="h",facecolors='none', s=40, )
+        ax.scatter(time, topology15_juice, edgecolors="#999999", label="T15 Juice SLO=1 Utility=5", marker="s",facecolors='none', s=40)
 
         ax.set_xlabel('Time/s', fontsize=10)
         ax2.set_ylabel('Juice/ms', fontsize=10)
@@ -791,7 +884,7 @@ for i in os.listdir("/Users/fariakalim/exp113/"):
 
         # ax2.set_yscale('log')
         plt.xlim(0,10000)
-        #ax.set_ylim(0, 1.1)
+        ax.set_ylim(0, 1.1)
         ax2.set_ylim(40, 100)
         # ax2.set_ylim(0,200)
         # ax2.set_ylim(-10000,800000)
@@ -812,11 +905,11 @@ for i in os.listdir("/Users/fariakalim/exp113/"):
         ax.scatter(time, topology9_utility, edgecolors="purple", label="T9", marker="h", facecolors='none', s=40, )
         ax.scatter(time, topology10_utility, edgecolors="pink", label="T10", marker="s", facecolors='none', s=40, )
 
-        # ax.scatter(time, topology11_utility, edgecolors="#999A1F", label="T11", marker="s", facecolors='none', s=40, )
-        # ax.scatter(time, topology12_utility, edgecolors="#776A1F", label="T12", marker="s", facecolors='none', s=40, )
-        # ax.scatter(time, topology13_utility, edgecolors="#444A1F", label="T13", marker="s", facecolors='none', s=40, )
-        # ax.scatter(time, topology14_utility, edgecolors="#776A1F", label="T14", marker="s", facecolors='none', s=40, )
-        # ax.scatter(time, topology15_utility, edgecolors="#444A1F", label="T15", marker="s", facecolors='none', s=40, )
+        ax.scatter(time, topology11_utility, edgecolors="#123A1F", label="T11", marker="s", facecolors='none', s=40, )
+        ax.scatter(time, topology12_utility, edgecolors="#AAAB2C",label="T12", marker="s", facecolors='none', s=40, )
+        ax.scatter(time, topology13_utility, edgecolors="#ABC123", label="T13", marker="s", facecolors='none', s=40, )
+        ax.scatter(time, topology14_utility, edgecolors="#886A1F", label="T14", marker="s", facecolors='none', s=40, )
+        ax.scatter(time, topology15_utility, edgecolors="#999999", label="T15", marker="s", facecolors='none', s=40, )
 
         ax.set_xlabel('Time/S', fontsize=10)
         ax.set_ylabel('Utility', fontsize=10)
@@ -824,7 +917,7 @@ for i in os.listdir("/Users/fariakalim/exp113/"):
         fig.tight_layout()
 
         xlim_start = 0
-        xlim_end = 10000
+        xlim_end = 10500
         linestyles = ['--', '-.', 'solid', 'dotted']
         for j in range(0, len(rebalance_time)):
             if (rebalance_time[j] >= xlim_start and rebalance_time[j] <= xlim_end):
@@ -846,26 +939,24 @@ for i in os.listdir("/Users/fariakalim/exp113/"):
                        + topology8_utility[j]
                        + topology9_utility[j]
                        + topology10_utility[j]
-                       # + topology11_utility[j]
-                       # + topology12_utility[j]
-                       # + topology13_utility[j]
-                       # + topology14_utility[j]
-                       # + topology15_utility[j]
+                       + topology11_utility[j]
+                       + topology12_utility[j]
+                       + topology13_utility[j]
+                       + topology14_utility[j]
+                       + topology15_utility[j]
                        )
 
-        print len(temp_time)
-        print len(sum)
+
         ax.scatter(temp_time, movingaverage(sum,10), edgecolors="red", label="Sum", marker="h", facecolors='r', s=80, )
         lines, labels = ax.get_legend_handles_labels()
         ax.legend(lines, labels, loc=9, bbox_to_anchor=(0.5, -0.1), ncol=2, prop={'size': 10})
         plt.xlim(xlim_start, xlim_end)
-        ax.set_ylim(0, 350)
+        ax.set_ylim(0, 526)
         plt.savefig(filename + '-utilities.png', bbox_inches='tight')
         # plotting input and output tuples
         fig, ax = plt.subplots()
 
-        print input_at_source_1
-        print output_at_sink_1
+
         ax.scatter(time, input_at_source_1, edgecolors="green", label="T1 input", facecolor='none', marker="D", s=40)
      #   ax.scatter(time, output_at_sink_1, edgecolors="blue", label="T1 output", facecolor='none', marker="D", s=40)
 
@@ -907,7 +998,7 @@ for i in os.listdir("/Users/fariakalim/exp113/"):
         fig.tight_layout()
         # plt.vlines(x=600, ymax=5000 , ymin=-1, label="Ten Minute Mark", colors='blue')
         plt.legend(loc=9, bbox_to_anchor=(0.5, -0.1), ncol=2, prop={'size': 10})
-        plt.xlim(0,10000)
+        plt.xlim(0,5500)
         #plt.ylim(0, 200000)
         plt.ylim(0, 12000)
         plt.savefig(filename + "+tuples" + '.png', bbox_inches='tight')

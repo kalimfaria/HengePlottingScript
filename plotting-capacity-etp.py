@@ -15,10 +15,10 @@ def is_number(s):
 
 flag = 0
 desc_string = " "
-for i in os.listdir("/Users/fariakalim/exp24/"):
+for i in os.listdir("/Users/fariakalim/exp43/"):
     if  i.endswith("capacity.log") : #i.endswith("capacity.log") or
         print i
-        f = open("/Users/fariakalim/exp24/"+i, 'r')
+        f = open("/Users/fariakalim/exp43/"+i, 'r')
         filename = f.__getattribute__("name").split(".")[0]
         print filename
         topology1_bolt_aggregate = []
@@ -193,13 +193,13 @@ for i in os.listdir("/Users/fariakalim/exp24/"):
             min_length = len(topology4_bolt_filter_2)
 
         time = time[0:min_length]
-        topology1_bolt_aggregate = topology1_bolt_aggregate[0:min_length]
-        topology1_spout = topology1_spout[0:min_length]
-        topology1_bolt_transform = topology1_bolt_transform[0:min_length]
-        topology1_bolt_output_sink = topology1_bolt_output_sink[0:min_length]
-        topology1_bolt_join = topology1_bolt_join[0:min_length]
-        topology1_bolt_filter = topology1_bolt_filter[0:min_length]
-        topology1_bolt_filter_2 = topology1_bolt_filter_2[0:min_length]
+        # topology1_bolt_aggregate = topology1_bolt_aggregate[0:min_length]
+        # topology1_spout = topology1_spout[0:min_length]
+        # topology1_bolt_transform = topology1_bolt_transform[0:min_length]
+        # topology1_bolt_output_sink = topology1_bolt_output_sink[0:min_length]
+        # topology1_bolt_join = topology1_bolt_join[0:min_length]
+        # topology1_bolt_filter = topology1_bolt_filter[0:min_length]
+        # topology1_bolt_filter_2 = topology1_bolt_filter_2[0:min_length]
 
   #      topology2_bolt_aggregate = topology2_bolt_aggregate[0:min_length]
   #      topology2_spout = topology2_spout[0:min_length]
@@ -208,14 +208,14 @@ for i in os.listdir("/Users/fariakalim/exp24/"):
   #      topology2_bolt_join = topology2_bolt_join[0:min_length]
   #      topology2_bolt_filter = topology2_bolt_filter[0:min_length]
   #      topology2_bolt_filter_2 = topology2_bolt_filter_2[0:min_length]
-       #
-       #  topology3_bolt_aggregate = topology3_bolt_aggregate[0:min_length]
-       # # topology3_spout = topology3_spout[0:min_length]
-       #  topology3_bolt_transform = topology3_bolt_transform[0:min_length]
-       #  topology3_bolt_output_sink = topology3_bolt_output_sink[0:min_length]
-       #  topology3_bolt_join = topology3_bolt_join[0:min_length]
-       #  topology3_bolt_filter = topology3_bolt_filter[0:min_length]
-       #  topology3_bolt_filter_2 = topology3_bolt_filter_2[0:min_length]
+
+        topology3_bolt_aggregate = topology3_bolt_aggregate[0:min_length]
+       # topology3_spout = topology3_spout[0:min_length]
+        topology3_bolt_transform = topology3_bolt_transform[0:min_length]
+        topology3_bolt_output_sink = topology3_bolt_output_sink[0:min_length]
+        topology3_bolt_join = topology3_bolt_join[0:min_length]
+        topology3_bolt_filter = topology3_bolt_filter[0:min_length]
+        topology3_bolt_filter_2 = topology3_bolt_filter_2[0:min_length]
        #
        #  topology4_bolt_aggregate = topology4_bolt_aggregate[0:min_length]
        # # topology4_spout = topology4_spout[0:min_length]
@@ -232,7 +232,7 @@ for i in os.listdir("/Users/fariakalim/exp24/"):
         fig, ax = plt.subplots()
         print topology1_bolt_aggregate
         print time
-        ax.scatter(time, topology1_bolt_aggregate, edgecolors ="blue", label="Capacity of congested bolt", marker ="s", facecolors='none', s=10,)
+        ax.scatter(time, topology3_bolt_aggregate, edgecolors ="blue", label="Capacity of congested bolt", marker ="s", facecolors='none', s=10,)
 
         ax.set_xlabel('Time/S', fontsize=10)
         ax.set_ylabel('Capacity', fontsize=10)
@@ -246,10 +246,10 @@ for i in os.listdir("/Users/fariakalim/exp24/"):
         plt.xlim(0,23000)
         ax.set_ylim(0, 1.5)
 
-        plt.savefig(filename+'-aggregate-topology1-capacity.png', bbox_inches='tight')
+        plt.savefig(filename+'-aggregate-topology3-capacity.png', bbox_inches='tight')
 
         fig, ax = plt.subplots()
-        ax.scatter(time, topology1_bolt_filter_2, edgecolors ="black", label="Capacity of congested bolt", marker="s", facecolors='none', s=10,)
+        ax.scatter(time, topology3_bolt_filter_2, edgecolors ="black", label="Capacity of congested bolt", marker="s", facecolors='none', s=10,)
 
         ax.set_xlabel('Time/S', fontsize=10)
         ax.set_ylabel('Capacity', fontsize=10)
@@ -263,7 +263,7 @@ for i in os.listdir("/Users/fariakalim/exp24/"):
         plt.xlim(0,11000)
         ax.set_ylim(-1.0, 3.0)
 
-        plt.savefig(filename+'-filter2-topology1-capacity.png', bbox_inches='tight')
+        plt.savefig(filename+'-filter2-topology3-capacity.png', bbox_inches='tight')
 
 
       #   fig, ax = plt.subplots()
